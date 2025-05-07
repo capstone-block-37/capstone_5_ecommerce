@@ -1,0 +1,97 @@
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
+const Register = ( ) => {
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState(null);
+
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    //needs to be a fetch
+    try {
+      const response = await fetch("http://localhost:3033/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password, email }),
+      });
+      const json = await response.json();
+
+      if (response.ok) {
+        setUsername("");
+        setPassord("");
+
+        setToken(json.token);
+      } else {
+        setErrors(`Oh no! Something went wrong! ${json.message}`);
+      }
+    } catch (error) {
+      setErrors(`Everything is broken! ${error}`);
+    }
+  };
+
+  const handleChange = (event) => {
+    if (event.target.name === "firstName") {
+      setFullname(event.target.value);
+    } else if (event.target.name === "email") {
+      setEmail(event.target.value);
+    } else if (event.target.name === "password") {
+      setPassword(event.target.value);
+    }
+  };
+
+  return (
+    <>
+      <div className="container">
+        <h1 className="Login">Register</h1>
+      </div>
+      <section className="AddPlayer">
+        <form onSubmit={handleSubmit}>
+          <label>
+            Full Name:{" "}
+            <input
+              value={fullname}
+              name="name"
+              placeholder="First Name"
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            Email:{" "}
+            <input
+              value={email}
+              name="email"
+              placeholder="email"
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            Username:{" "}
+            <input
+              value={username}
+              name="username"
+              placeholder="username"
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            Password:{" "}
+            <input
+              value={password}
+              name="password"
+              placeholder="password"
+              onChange={handleChange}
+            />
+          </label>
+          <input type="submit" value="Register" />
+        </form>
+      </section>
+    </>
+  );
+};
+
+export default Register;

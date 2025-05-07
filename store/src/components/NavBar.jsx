@@ -4,9 +4,7 @@ import { useSelector, UseDispatch } from "react-redux"
 function Navbar() {
 
 
-    return (
-
-    )
+    return ()
 }
 
 export default Navbar;

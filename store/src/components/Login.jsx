@@ -3,27 +3,51 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = ({ setToken, setUser }) => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const [errors, setErrors] = useState(null);
 
   const reRoute = useNavigate();
 
+  //   const handleSubmit = async (event) => {
+  //     event.preventDefault();
+  //     const loginRegisteredUser = await loginUser({
+  //       email: email,
+  //       password: password,
+  //     });
+  //     console.log(loginRegisteredUser);
+  //     setToken(loginRegisteredUser.data.token);
+  //     setUser(loginRegisteredUser.data.user);
+  //     reRoute("/");
+  //   };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const loginRegisteredUser = await loginUser({
-      email: email,
-      password: password,
-    });
-    console.log(loginRegisteredUser);
-    setToken(loginRegisteredUser.data.token);
-    setUser(loginRegisteredUser.data.user);
-    reRoute("/");
+    try {
+      const response = await fetch("http://localhost:3033/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
+      const json = await response.json();
+      console.log(json);
+      if (response.ok) {
+        setUsername("");
+        setPassword("");
+        setToken(json.token);
+        setUser(json.token);
+        reRoute("/");
+      } else {
+        setErrors(`Oh no! Something went wrong! ${json.message}`);
+      }
+    } catch (error) {
+      setErrors(`Everything is broken! ${error}`);
+    }
   };
 
   const handleChange = (event) => {
-    if (event.target.name === "email") {
-      setEmail(event.target.value);
+    if (event.target.name === "username") {
+      setUsername(event.target.value);
     } else if (event.target.name === "password") {
       setPassword(event.target.value);
     }
@@ -34,10 +58,15 @@ const Login = ({ setToken, setUser }) => {
         <h1 className="Login">Login</h1>
       </div>
       <section className="AddPlayer">
+        {errors && <p className="register-error-msg">{errors}</p>}
         <form onSubmit={handleSubmit}>
           <label>
-            Email:{" "}
-            <input name="email" placeholder="Email" onChange={handleChange} />
+            Username:{" "}
+            <input
+              name="username"
+              placeholder="username"
+              onChange={handleChange}
+            />
           </label>
           <label>
             Password:{" "}

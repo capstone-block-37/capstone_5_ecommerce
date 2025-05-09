@@ -2,30 +2,31 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-const Register = ( ) => {
+const Register = ({ setToken, setUser }) => {
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState(null);
 
+  const reRoute = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    //needs to be a fetch
     try {
       const response = await fetch("http://localhost:3033/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password, email }),
+        body: JSON.stringify({ fullname, username, password, email }),
       });
       const json = await response.json();
-
+      console.log(json);
       if (response.ok) {
         setUsername("");
-        setPassord("");
-
+        setPassword("");
         setToken(json.token);
+        setUser(json.token);
+        reRoute("/");
       } else {
         setErrors(`Oh no! Something went wrong! ${json.message}`);
       }
@@ -35,10 +36,13 @@ const Register = ( ) => {
   };
 
   const handleChange = (event) => {
-    if (event.target.name === "firstName") {
+    console.log(event.target)
+    if (event.target.name === "fullname") {
       setFullname(event.target.value);
     } else if (event.target.name === "email") {
       setEmail(event.target.value);
+    } else if (event.target.name === "username") {
+      setUsername(event.target.value);
     } else if (event.target.name === "password") {
       setPassword(event.target.value);
     }
@@ -50,13 +54,14 @@ const Register = ( ) => {
         <h1 className="Login">Register</h1>
       </div>
       <section className="AddPlayer">
+        {errors && <p className="register-error-msg">{errors}</p>}
         <form onSubmit={handleSubmit}>
           <label>
             Full Name:{" "}
             <input
               value={fullname}
-              name="name"
-              placeholder="First Name"
+              name="fullname"
+              placeholder="Full Name"
               onChange={handleChange}
             />
           </label>

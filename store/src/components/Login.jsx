@@ -9,18 +9,6 @@ const Login = ({ setToken, setUser }) => {
 
   const reRoute = useNavigate();
 
-  //   const handleSubmit = async (event) => {
-  //     event.preventDefault();
-  //     const loginRegisteredUser = await loginUser({
-  //       email: email,
-  //       password: password,
-  //     });
-  //     console.log(loginRegisteredUser);
-  //     setToken(loginRegisteredUser.data.token);
-  //     setUser(loginRegisteredUser.data.user);
-  //     reRoute("/");
-  //   };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {

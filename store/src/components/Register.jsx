@@ -51,7 +51,7 @@ const Register = ({ setToken, setUser }) => {
   return (
     <>
       <div className="container">
-        <h1 className="Login">Register</h1>
+        <h2 className="Login">Register</h2>
       </div>
       <section className="AddPlayer">
         {errors && <p className="register-error-msg">{errors}</p>}

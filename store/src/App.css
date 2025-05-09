@@ -1,11 +1,31 @@
 body {
-  padding: 32px;
+  background: #fff;
+  color: #191926;
+}
+
+#root {
+  margin: 0 auto auto;
+  width: 100%;
+  m,ax-width: 100%;
 }
 
 .nav-bar {
+  margin: auto auto;
+  height: 50px;
+  background: #191926;
+}
+
+.innerNav {
   display: flex;
-  gap: 16px;
-  justify-content: center; 
-  align-items: center;   
-  te
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  gap: 10px;
+  width: 1256px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.innerNav a {
+    color: white;
 }

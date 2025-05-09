@@ -43,7 +43,7 @@ const Login = ({ setToken, setUser }) => {
   return (
     <>
       <div className="container">
-        <h1 className="Login">Login</h1>
+        <h2 className="Login">Login</h2>
       </div>
       <section className="AddPlayer">
         {errors && <p className="register-error-msg">{errors}</p>}

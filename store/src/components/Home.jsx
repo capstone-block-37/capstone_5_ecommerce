@@ -27,7 +27,7 @@ function Home() {
 
   return (
     <div className="app">
-      <h1>Your E-Commerce Store</h1>
+      <h2>Your E-Commerce Store</h2>
       {products.map((product) => (
         <div onClick={() => singleProduct(product.id)}>
           <h4>{product.name}</h4>

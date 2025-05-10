@@ -26,16 +26,18 @@ function Home() {
   }
 
   return (
-    <div className="app">
+    <div className="container">
       <h2>Your E-Commerce Store</h2>
-      {products.map((product) => (
-        <div onClick={() => singleProduct(product.id)}>
-          <h4>{product.name}</h4>
-          <h3>{product.description}</h3>
-          <p>Price: ${product.price}</p>
-          <img src={product.img_url} style={{ Width: "150px" }} />
-        </div>
-      ))}
+      <div className="products">
+        {products.map((product) => (
+          <div onClick={() => singleProduct(product.id)} className="product-card">
+            <img src={product.img_url} style={{ Width: "150px" }} />
+            <h2>{product.name}</h2>
+            <p className="product-description">{product.description}</p>
+            <p className="product-price">${product.price}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

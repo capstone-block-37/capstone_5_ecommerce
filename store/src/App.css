@@ -3,8 +3,11 @@ body {
   color: #191926;
 }
 
-img{
+img {
   width: 300px;
+  height: 300px;
+  object-fir: cover;
+  overflow: hidden; 
 }
 
 #root {

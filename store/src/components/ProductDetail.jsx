@@ -28,13 +28,13 @@ function ProductDetail() {
       }
 
   return (
-    <div className="product">
-      <h1>Your product</h1>
-      <div>
-        <h3>{product.description}</h3>
-        <h4>{product.name}</h4>
-        <p>Price: ${product.price}</p>
+    <div className="container">
+      <h2>{product.name}</h2>
+      <div className="product-card-single">
         <img src={product.img_url} style={{ Width: "150px" }} />
+        <p className="product-description">{product.description}</p>
+        <p className="product-price">${product.price}</p>
+        <button className="cart-btn">Add to cart</button>
       </div>
     </div>
   );

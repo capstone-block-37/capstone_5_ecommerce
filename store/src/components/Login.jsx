@@ -11,6 +11,12 @@ const Login = ({ setToken, setUser }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if(!username || !password) {
+        setErrors("Username and password are required");
+        return;
+    }
+
     try {
       const response = await fetch("http://localhost:3033/api/login", {
         method: "POST",
@@ -26,7 +32,7 @@ const Login = ({ setToken, setUser }) => {
         setUser(json.token);
         reRoute("/");
       } else {
-        setErrors(`Oh no! Something went wrong! ${json.message}`);
+        setErrors(`Password or username are incorrect`);
       }
     } catch (error) {
       setErrors(`Everything is broken! ${error}`);
@@ -44,29 +50,30 @@ const Login = ({ setToken, setUser }) => {
     <>
       <div className="container">
         <h2 className="Login">Login</h2>
+
+        <section>
+          {errors && <p className="register-error-msg">{errors}</p>}
+          <form onSubmit={handleSubmit} className="form">
+            <label className="FormInput">
+              Username:{" "}
+              <input
+                name="username"
+                placeholder="username"
+                onChange={handleChange}
+              />
+            </label>
+            <label className="FormInput">
+              Password:{" "}
+              <input
+                name="password"
+                placeholder="password"
+                onChange={handleChange}
+              />
+            </label>
+            <input type="submit" value="Login" />
+          </form>
+        </section>
       </div>
-      <section className="AddPlayer">
-        {errors && <p className="register-error-msg">{errors}</p>}
-        <form onSubmit={handleSubmit}>
-          <label>
-            Username:{" "}
-            <input
-              name="username"
-              placeholder="username"
-              onChange={handleChange}
-            />
-          </label>
-          <label>
-            Password:{" "}
-            <input
-              name="password"
-              placeholder="password"
-              onChange={handleChange}
-            />
-          </label>
-          <input type="submit" />
-        </form>
-      </section>
     </>
   );
 };

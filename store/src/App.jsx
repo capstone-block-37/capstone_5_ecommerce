@@ -33,7 +33,7 @@ function App() {
           {token ? (
             <Link onClick={logoutUser}>Logout</Link>
           ) : (
-            <div>
+            <div className="loginLink">
               <Link to="/login">Login</Link>
               <Link to="/register">Register</Link>
             </div>

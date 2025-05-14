@@ -31,12 +31,12 @@ const Register = ({ setToken, setUser }) => {
         setErrors(`Oh no! Something went wrong! ${json.message}`);
       }
     } catch (error) {
-      setErrors(`Everything is broken! ${error}`);
+      setErrors(`Please fill out the form. ${error}`);
     }
   };
 
   const handleChange = (event) => {
-    console.log(event.target)
+    console.log(event.target);
     if (event.target.name === "fullname") {
       setFullname(event.target.value);
     } else if (event.target.name === "email") {
@@ -52,49 +52,54 @@ const Register = ({ setToken, setUser }) => {
     <>
       <div className="container">
         <h2 className="Login">Register</h2>
+
+        <section>
+          {errors && <p className="register-error-msg">{errors}</p>}
+          <form onSubmit={handleSubmit} className="form">
+            <label className="FormInput">
+              Full Name:{" "}
+              <input
+                value={fullname}
+                name="fullname"
+                placeholder="Full Name"
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <label className="FormInput">
+              Email:{" "}
+              <input
+                value={email}
+                name="email"
+                placeholder="email"
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <label className="FormInput">
+              Username:{" "}
+              <input
+                value={username}
+                name="username"
+                placeholder="username"
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <label className="FormInput">
+              Password:{" "}
+              <input
+                value={password}
+                name="password"
+                placeholder="password"
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <input type="submit" value="Register" />
+          </form>
+        </section>
       </div>
-      <section className="AddPlayer">
-        {errors && <p className="register-error-msg">{errors}</p>}
-        <form onSubmit={handleSubmit}>
-          <label>
-            Full Name:{" "}
-            <input
-              value={fullname}
-              name="fullname"
-              placeholder="Full Name"
-              onChange={handleChange}
-            />
-          </label>
-          <label>
-            Email:{" "}
-            <input
-              value={email}
-              name="email"
-              placeholder="email"
-              onChange={handleChange}
-            />
-          </label>
-          <label>
-            Username:{" "}
-            <input
-              value={username}
-              name="username"
-              placeholder="username"
-              onChange={handleChange}
-            />
-          </label>
-          <label>
-            Password:{" "}
-            <input
-              value={password}
-              name="password"
-              placeholder="password"
-              onChange={handleChange}
-            />
-          </label>
-          <input type="submit" value="Register" />
-        </form>
-      </section>
     </>
   );
 };

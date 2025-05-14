@@ -28,10 +28,10 @@ function Home() {
   return (
     <div className="container">
       <h2>Your E-Commerce Store</h2>
-      <div className="products">
+      <div className="productsWrapper">
         {products.map((product) => (
           <div onClick={() => singleProduct(product.id)} className="product-card">
-            <img src={product.img_url} style={{ Width: "150px" }} />
+            <img src={product.img_url} style={{ width: "100%", height: "250px" }} />
             <h2>{product.name}</h2>
             <p className="product-description">{product.description}</p>
             <p className="product-price">${product.price}</p>

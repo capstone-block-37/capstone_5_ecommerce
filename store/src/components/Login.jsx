@@ -32,7 +32,7 @@ const Login = ({ setToken, setUser }) => {
         setUser(json.token);
         reRoute("/");
       } else {
-        setErrors(`Password or username are incorrect`);
+        setErrors(`Password and/or the username you entered is incorrect`);
       }
     } catch (error) {
       setErrors(`Everything is broken! ${error}`);

@@ -125,19 +125,20 @@ img {
   gap: 16px;
   width: 300px;
   max-width: 100%;
+  margin: 0 auto;
 }
 .FormInput {
   display: flex;
   flex-direction: column;
-  gap: 8px;
 }
 
 .form input{
   padding: 10px;
+  margin-top: 8px;
 }
 
 .form input[type="submit"] {
-  background: #4260e9;
+  background: #2239ad;
   color: #fff;
   border: none;
   padding: 10px 16px;
@@ -155,4 +156,13 @@ img {
 .loginLink{
   display: flex;
   gap: 32px;
+}
+
+
+.register-error-msg {
+  padding: 5px 10px;
+  background: #e42727;
+  color: #fff;
+  border-radius: 4px;
+  margin-bottom: 40px;
 }

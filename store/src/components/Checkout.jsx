@@ -1,11 +1,12 @@
 import React from 'react';
 
 const Checkout = () => {
-    return (
-        <h2>
-         Checkout
-        </h2>
-    );
+  return (
+    <div className="container">
+      <h2>Checkout</h2>
+      <div className="productsWrapper"></div>
+    </div>
+  );
 };
 
 export default Checkout;

@@ -11,6 +11,7 @@ import { useNavigate } from "react-router";
 
 function App() {
   const [token, setToken] = useState(null);
+  const [cart, setCart] = useState([]);
   const [user, setUser] = useState(null);
 
   let navigate = useNavigate();
@@ -52,8 +53,8 @@ function App() {
           element={<Login setToken={setToken} setUser={setUser} />}
         ></Route>
         <Route path="/checkout" element={<Checkout />}></Route>
-        <Route path="/cart" element={<Cart />}></Route>
-        <Route path="/product/:id" element={<ProductDetail />}></Route>
+        <Route path="/cart" element={<Cart cart={cart}/>}></Route>
+        <Route path="/product/:id" element={<ProductDetail setCart={setCart} cart={cart}/>}></Route>
       </Routes>
     </>
   );

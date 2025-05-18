@@ -53,7 +53,7 @@ function App() {
           element={<Login setToken={setToken} setUser={setUser} />}
         ></Route>
         <Route path="/checkout" element={<Checkout />}></Route>
-        <Route path="/cart" element={<Cart cart={cart}/>}></Route>
+        <Route path="/cart" element={<Cart cart={cart} token={token} setCart={setCart}/>}></Route>
         <Route path="/product/:id" element={<ProductDetail setCart={setCart} cart={cart}/>}></Route>
       </Routes>
     </>

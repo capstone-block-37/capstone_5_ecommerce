@@ -40,8 +40,6 @@ function ProductDetail({ setCart, cart }) {
         <button onClick={() => setCart([product, ...cart])} className="cart-btn">
           Add to cart
         </button>
-        {token ? <Link>Delete</Link> : <Link>not working</Link>}
-        {/* <Link onClick>Delete</Link> */}
       </div>
     </div>
   );

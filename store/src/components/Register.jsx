@@ -14,11 +14,14 @@ const Register = ({ setToken, setUser }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("http://localhost:3033/api/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ fullname, username, password, email }),
-      });
+      const response = await fetch(
+        "https://block-37-e-commerce-backend.onrender.com/api/register",{
+          // const response = await fetch("http://localhost:3033/api/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ fullname, username, password, email }),
+        }
+      );
       const json = await response.json();
       console.log(json);
       if (response.ok) {

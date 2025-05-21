@@ -5,10 +5,13 @@ const Cart = ({ cart, token, setCart }) => {
 
   const deleteProductBtn = async (id) => {
     try {
-      await fetch(`http://localhost:3033/api/users/userProducts/${id}`, {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json", Authorization: token },
-      });
+      await fetch(
+        `https://block-37-e-commerce-backend.onrender.com/api/users/userProducts/${id}`,{
+          // await fetch(`http://localhost:3033/api/users/userProducts/${id}`
+          method: "DELETE",
+          headers: { "Content-Type": "application/json", Authorization: token },
+        }
+      );
       for (let i = 0; i < cart.length; i++) {
         if (cart[i].id === id) {
           cart.splice(i, 1);

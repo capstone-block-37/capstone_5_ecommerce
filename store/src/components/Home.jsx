@@ -9,7 +9,9 @@ function Home() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("http://localhost:3033/api/products");
+        const response = await fetch(
+          "https://block-37-e-commerce-backend.onrender.com/api/products");
+        // const response = await fetch("http://localhost:3033/api/products");
         const result = await response.json();
         console.log(result);
         setProducts(result);

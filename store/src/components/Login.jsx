@@ -18,11 +18,14 @@ const Login = ({ setToken, setUser }) => {
     }
 
     try {
-      const response = await fetch("http://localhost:3033/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
-      });
+      const response = await fetch(
+        "https://block-37-e-commerce-backend.onrender.com/api/login", {
+          // const response = await fetch("http://localhost:3033/api/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password }),
+        }
+      );
       const json = await response.json();
       console.log(json);
       if (response.ok) {

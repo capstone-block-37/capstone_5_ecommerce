@@ -14,7 +14,9 @@ function ProductDetail({ setCart, cart }) {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(`http://localhost:3033/api/product/${id}`);
+        const response = await fetch(
+          `https://block-37-e-commerce-backend.onrender.com/api/product/${id}`);
+        // const response = await fetch(`http://localhost:3033/api/product/${id}`);
         const result = await response.json();
         setProduct(result);
       } catch (error) {
